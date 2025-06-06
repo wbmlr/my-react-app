@@ -1,6 +1,6 @@
 # render.yaml
 services:
-  - type: web_service
+  - type: web  # This line specifically
     name: weather-app-backend
     env: python
     rootDir: .
@@ -15,7 +15,7 @@ services:
       - key: DB_NAME # Your external MySQL database name
     healthCheckPath: /api/db/tables # Basic health check
 
-  - type: static_site
+  - type: static_site # And this line
     name: weather-app-frontend
     rootDir: .
     buildCommand: npm install && npm run build
