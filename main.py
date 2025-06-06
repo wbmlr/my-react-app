@@ -12,7 +12,7 @@ from utils.google_places import get_google_places_suggestions_backend
 app = FastAPI()
 API_KEY = os.getenv("OPENWEATHER_API_KEY")
 GOOGLE_PLACES_API_KEY = os.getenv("GOOGLE_PLACES_API_KEY")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 @app.on_event("startup")
 async def startup_event(): db_cache.init_db()
 
