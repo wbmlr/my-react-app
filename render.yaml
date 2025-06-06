@@ -20,7 +20,7 @@ services:
     runtime: static # Important for static sites
     rootDir: .
     buildCommand: npm install && npm run build
-    publishPath: build
+    staticPublishPath: ./build
     envVars:
       - key: REACT_APP_API_BASE_URL
         value: /api
