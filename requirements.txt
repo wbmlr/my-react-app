@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+requests
+pymysql
+python-dotenv # For local development
+pydantic>=2.0.0

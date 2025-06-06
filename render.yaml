@@ -1,0 +1,25 @@
+# render.yaml
+services:
+  - type: web_service
+    name: weather-app-backend
+    env: python
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENWEATHER_API_KEY # Set your OpenWeather API Key on Render
+      - key: GOOGLE_PLACES_API_KEY # Set your Google Places API Key on Render
+      - key: DB_HOST # Your external MySQL host
+      - key: DB_USER # Your external MySQL user
+      - key: DB_PASSWORD # Your external MySQL password
+      - key: DB_NAME # Your external MySQL database name
+    healthCheckPath: /api/db/tables # Basic health check
+
+  - type: static_site
+    name: weather-app-frontend
+    rootDir: .
+    buildCommand: npm install && npm run build
+    publishPath: build
+    envVars:
+      - key: REACT_APP_API_BASE_URL
+        value: /api # Frontend will proxy to backend service on Render
