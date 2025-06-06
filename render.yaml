@@ -1,6 +1,6 @@
 # render.yaml
 services:
-  - type: web  # Change 'web_service' to 'web'
+  - type: web
     name: weather-app-backend
     env: python
     rootDir: .
@@ -8,19 +8,25 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: OPENWEATHER_API_KEY
+        sync: false # Tells Render to prompt for this value in the dashboard
       - key: GOOGLE_PLACES_API_KEY
+        sync: false # Tells Render to prompt for this value in the dashboard
       - key: DB_HOST
+        sync: false # Tells Render to prompt for this value in the dashboard
       - key: DB_USER
+        sync: false # Tells Render to prompt for this value in the dashboard
       - key: DB_PASSWORD
+        sync: false # Tells Render to prompt for this value in the dashboard
       - key: DB_NAME
+        sync: false # Tells Render to prompt for this value in the dashboard
     healthCheckPath: /api/db/tables
 
-  - type: web  # Change 'static_site' to 'web' and add runtime: static
+  - type: web
     name: weather-app-frontend
-    runtime: static # Important for static sites
+    runtime: static
     rootDir: .
     buildCommand: npm install && npm run build
-    staticPublishPath: ./build
+    publishPath: build
     envVars:
       - key: REACT_APP_API_BASE_URL
-        value: /api
+        value: /api # This one is fine as it has a direct value
