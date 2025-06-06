@@ -26,7 +26,7 @@ services:
     runtime: static
     rootDir: .
     buildCommand: npm install && npm run build
-    publishPath: build
+    staticPublishPath: ./build
     envVars:
       - key: REACT_APP_API_BASE_URL
         value: /api # This one is fine as it has a direct value
