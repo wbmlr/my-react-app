@@ -3,6 +3,7 @@ services:
   - type: web
     name: weather-app-backend
     env: python
+    plan: free
     rootDir: .
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
@@ -24,6 +25,7 @@ services:
   - type: web
     name: weather-app-frontend
     runtime: static
+    plan: free
     rootDir: .
     buildCommand: npm install && npm run build
     staticPublishPath: ./build
